@@ -1,0 +1,11 @@
+{
+  "port": 7920,
+  "git": {
+    "uri": "/git",
+    "secret": "CQGitBot"
+  },
+  "qq": {
+    "uri": "/qq",
+    "cq_port": 5700
+  }
+}
