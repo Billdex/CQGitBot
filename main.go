@@ -1,20 +1,19 @@
-package main	// import "CQGitBot"
+package main // import "CQGitBot"
 
 import (
 	"CQGitBot/conf"
-	"github.com/gin-gonic/gin"
 	. "CQGitBot/githook"
+	"github.com/gin-gonic/gin"
 	"log"
 	"strconv"
 )
 
-func main(){
+func main() {
 	//Load Config
 	confPath := "./conf.json"
 	err := conf.LoadConfig(confPath)
-	if err != nil{
+	if err != nil {
 		log.Fatalln("Load Config Fail!")
-		return
 	}
 
 	//Create a Gin router and run
@@ -24,7 +23,7 @@ func main(){
 
 	port := strconv.FormatInt(conf.Cfg.Port, 10)
 	err = r.Run(":" + port)
-	if err != nil{
+	if err != nil {
 		log.Fatalln("gin.Run ERROR:", err)
 	}
 

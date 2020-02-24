@@ -2,7 +2,7 @@
   "port": 7920,
   "git": {
     "uri": "/git",
-    "secret": "CQGitBot"
+    "secret": "YourSecret"
   },
   "qq": {
     "uri": "/qq",
