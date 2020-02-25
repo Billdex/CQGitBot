@@ -1,7 +1,9 @@
 package githook
 
 import (
+	"CQGitBot/conf"
 	"CQGitBot/models"
+	"CQGitBot/qqbot"
 	"encoding/json"
 	"github.com/lunny/log"
 )
@@ -22,5 +24,15 @@ func PushHandle(payload []byte) (err error) {
 		msg += commit.Message + " [" + commit.Timestamp.Format("2006-01-02 15:04:05") + "]\n"
 	}
 	log.Println(msg)
+	for _, groupId := range conf.Cfg.QQ.GroupId {
+		err = qqbot.SendGroupMsg(qqbot.GroupMsg{
+			GroupId:    groupId,
+			Message:    msg,
+			AutoEscape: true,
+		})
+		if err != nil {
+			log.Error("Send Group Msg Fail!", err)
+		}
+	}
 	return nil
 }

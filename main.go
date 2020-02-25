@@ -15,6 +15,7 @@ func main() {
 	if err != nil {
 		log.Fatalln("Load Config Fail!")
 	}
+	log.Println("配置文件加载完成！", conf.Cfg)
 
 	//Create a Gin router and run
 	r := gin.Default()
