@@ -15,11 +15,11 @@ func PushHandle(payload []byte) (err error) {
 		return err
 	}
 	log.Println(eventInfo)
-	var msg string
-	msg += eventInfo.Repository.Name + "\n"
+
+	msg := "[" + eventInfo.Repository.Name + " | push]\n"
 	msg += eventInfo.Pusher.Name + "提交了代码\n"
 	for _, commit := range eventInfo.Commits {
-		msg += commit.Message + "[" + commit.Timestamp.Format("2006-01-02 15:04:05") + "]\n"
+		msg += commit.Message + " [" + commit.Timestamp.Format("2006-01-02 15:04:05") + "]\n"
 	}
 	log.Println(msg)
 	return nil

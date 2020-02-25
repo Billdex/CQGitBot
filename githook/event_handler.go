@@ -37,6 +37,8 @@ func EventParsing(c *gin.Context) {
 
 	//Identify X-GitHub-Event
 	switch event {
+	case "ping":
+		err = PingHandle(payloadBody)
 	case "star":
 		err = StarHandler(payloadBody)
 	case "push":
