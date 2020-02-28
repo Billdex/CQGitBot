@@ -1,12 +1,12 @@
-#CQGitBot
+# CQGitBot
 
 ---
 
-##简介
+## 简介
 
 CQGitBot是一个使用Golang开发，调用[cqhttp](https://github.com/richardchien/coolq-http-api)提供的酷Q的api接口开发的简单Github消息推送服务机器人。它在接收到Github的WebHook消息之后，会进行一些简单的处理并将消息转发到指定QQ群。
 
-##使用说明
+## 使用说明
 
 使用该机器人需要先下载安装[酷Q](https://cqp.cc/t/23253)和[CoolQ Http API](https://github.com/richardchien/coolq-http-api/releases)插件。安装好酷Q后，将下载好的cpk插件放入酷Q安装目录内的app目录下，即
 
@@ -47,7 +47,7 @@ Secret 选填，作为鉴权用的密钥，可以为空
 
 添加好WebHook之后会发送一条ping消息，正常接收到该消息则说明配置正确且机器人正常启动。
 
-##配置文件说明
+## 配置文件说明
 
 配置文件 `conf.json` 需要放在与执行程序同级的目录下。配置项格式如下
 
