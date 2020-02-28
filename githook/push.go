@@ -20,7 +20,7 @@ func PushHandle(payload []byte) (err error) {
 	log.Println(eventInfo)
 
 	msg := "项目：" + eventInfo.Repository.Name + "\n"
-	msg += "操作：@" + eventInfo.Pusher.Name + " 提交了代码"
+	msg += "事件：@" + eventInfo.Pusher.Name + " 提交了代码"
 	ref := strings.Split(eventInfo.Ref, "/")
 	if len(ref) == 3 {
 		msg += "到 " + ref[2] + " 分支"
