@@ -18,8 +18,8 @@ func PingHandle(payload []byte) (err error) {
 	}
 	log.Println(eventInfo)
 
-	msg := "[" + eventInfo.Repository.Name + " | ping]\n"
-	msg += eventInfo.Repository.Name + "创建了一个webhook\n"
+	msg := "项目：" + eventInfo.Repository.Name + "\n"
+	msg += "事件：@" + eventInfo.Sender.Login + " 添加了一个WebHook\n"
 	msg += "Hook ID:" + strconv.FormatInt(eventInfo.HookId, 10) + "\n"
 	msg += "仓库地址: " + eventInfo.Repository.HtmlUrl
 

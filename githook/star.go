@@ -19,13 +19,14 @@ func StarHandler(payload []byte) (err error) {
 	}
 	log.Println(eventInfo)
 
-	msg := "[" + eventInfo.Repository.Name + " | star]\n"
+	msg := "项目：" + eventInfo.Repository.Name + "\n"
 	if eventInfo.Action == "created" {
-		msg += eventInfo.Sender.Login + "点了个star\n"
-		msg += fmt.Sprintf("该项目现在有%v个star", eventInfo.Repository.StargazersCount)
+		msg += "事件：@" + eventInfo.Sender.Login + " 点了个 ★\n"
+		msg += fmt.Sprintf("该项目有 %v 个 ★ 啦！加油鸭！", eventInfo.Repository.StargazersCount)
 
 	} else if eventInfo.Action == "deleted" {
-		msg += eventInfo.Sender.Login + "取消了star"
+		msg += "事件：@" + eventInfo.Sender.Login + " 取消了 ☆\n"
+		msg += "再接再厉鸭！"
 	}
 	log.Println(msg)
 	for _, groupId := range conf.Cfg.QQ.GroupId {
