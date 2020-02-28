@@ -17,22 +17,25 @@ func EventParsing(c *gin.Context) {
 	log.Println("X-Hub-Signature: ", signature)
 
 	payloadBody, err := c.GetRawData()
-	//Verify X-GitHub-Signature
-	fromGitHub, err := verifySignature(payloadBody, signature, conf.Cfg.Git.Secret)
-	if err != nil {
-		log.Println("Verify signature fail: ", err)
-		c.JSON(200, gin.H{
-			"status_code": 1001,
-			"message":     "Verify Signature Fail!",
-		})
-		return
-	}
-	if fromGitHub != true {
-		c.JSON(200, gin.H{
-			"status_code": 1002,
-			"message":     "Signature Wrong!",
-		})
-		return
+	secret := conf.Cfg.Git.Secret
+	if secret != "" {
+		//Verify X-GitHub-Signature
+		fromGitHub, err := verifySignature(payloadBody, signature, secret)
+		if err != nil {
+			log.Println("Verify signature fail: ", err)
+			c.JSON(200, gin.H{
+				"status_code": 1001,
+				"message":     "Verify Signature Fail!",
+			})
+			return
+		}
+		if fromGitHub == false {
+			c.JSON(200, gin.H{
+				"status_code": 1002,
+				"message":     "Secret Wrong!",
+			})
+			return
+		}
 	}
 
 	//Identify X-GitHub-Event
